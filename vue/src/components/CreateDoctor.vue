@@ -22,7 +22,7 @@
         <input type="email" class="form-control" v-model="email" required>
       </div>
 
-       <button id="submitButton" type="submit">Submit</button>
+       <button id="submitButton" type="submit" @click="submitForm">Submit</button>
     </form>
 
   </div>

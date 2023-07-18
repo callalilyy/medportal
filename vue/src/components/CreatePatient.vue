@@ -26,7 +26,7 @@
       <label for="zip">ZIP:&nbsp;&nbsp;</label>
       <input type="text" id="zip" v-model="formData.zip" required />
     </div>
-    <button id="submitButton" type="submit">Submit</button>
+    <button id="submitButton" type="submit" @click="submitForm">Submit</button>
   </form>
 </template>
 
@@ -39,7 +39,7 @@ export default {
   data() {
     return {
         formData: {
-      userId: null,
+      patientId: this.$store.state.role.roleId,
       firstName: "",
       lastName: "",
       dateOfBirth: "",
@@ -49,22 +49,32 @@ export default {
       state: "",
       zip: ""
     },
-    fetchPatient: {}
+    fetchPatient: {
+      patientId: "",
+      firstName: "",
+      lastName: "",
+      dateOfBirth: "",
+      address: "",
+      phoneNumber: ""
+  }
     };
   },
   methods: {
     async submitForm() {
 
+      
 
       try{
-     const res1 = await patientService.getPatientUserIdByUsername(this.userName);
-       this.userId = res1.data;
-      
-      await patientService.getPatientByUserId(this.userId).then(resp => {
-        this.fetchPatient = resp.data
-        .log(this.fetchPatient.dateOfBirth);
-      })
+    //  const res1 = await patientService.getPatientUserIdByUsername(this.userName);
+    //    this.userId = res1.data;
 
+      
+    //   await patientService.getPatientByUserId(this.userId).then(resp => {
+    //     this.fetchPatient = resp.data
+    //     .log(this.fetchPatient.dateOfBirth);
+    //   })
+
+      this.fetchPatient.patientId = this.formData.patientId;
       this.fetchPatient.firstName = this.formData.firstName;
       this.fetchPatient.lastName = this.formData.lastName;
       this.fetchPatient.dateOfBirth = this.formData.dateOfBirth;
@@ -73,7 +83,7 @@ export default {
       
       await patientService.updatePatientInformation(this.fetchPatient).then(res=>{
           if(res.status==200){
-            this.$router.push({name: 'patientdash', params: {patientId: this.fetchPatient.patientId}});
+            this.$router.push({name: 'patientdash', params: {patientId: this.formData.patientId}});
           }
       })
       }catch(error) {
