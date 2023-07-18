@@ -1,5 +1,5 @@
 # Final Capstone
 ​
-This directory contains all of the starter projects for the final capstone.
-​
-Each project contains instructions that provides information about the starting code and explains how to get started with the final capstone project.
+This is a presentation of the final capstone project for our Genesis Medical Scheduling Portal team. Our group comprised of 4 Tech Elevator bootcamp graguates, showcasing their full-stack software engineering knowledge and skills. 
+
+I am currently updating its functionality and editing visual elements as well. 
